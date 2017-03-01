@@ -22,9 +22,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
 
-        //To hide AppBar for fullscreen.
-        ActionBar ab = getSupportActionBar();
-        ab.hide();
 
         openHelper = new SQLiteDBHelper(this);
 

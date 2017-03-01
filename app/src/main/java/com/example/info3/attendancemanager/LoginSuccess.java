@@ -25,9 +25,6 @@ public class LoginSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_success);
 
-        //To hide AppBar for fullscreen.
-        ActionBar ab = getSupportActionBar();
-        ab.hide();
 
         TextView txtname = (TextView) findViewById(R.id.txt_success_name);
         TextView txtemail = (TextView) findViewById(R.id.txt_success_email);

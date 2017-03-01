@@ -18,70 +18,74 @@ android:background="@drawable/images">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="LOGIN"
-    android:textSize="70sp"
+    android:text="Login"
+
+    android:textSize="35sp"
+    android:fontFamily=""
     android:id="@+id/textView"
     android:textColor="#FFFFFF"
     android:layout_marginTop="65dp"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="TO"
-    android:textColor="#FFFFFF"
-    android:textSize="20sp"
-    android:id="@+id/textView2"
-    android:layout_marginTop="72dp"
-    android:layout_alignTop="@+id/textView"
-    android:layout_centerHorizontal="true" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="YOUR ACCOUNT"
-    android:textColor="#FFFFFF"
-    android:textSize="25sp"
-    android:id="@+id/textView3"
-    android:layout_below="@+id/textView2"
-    android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textView"
+        android:id="@+id/txtemail"
+        android:layout_height="wrap_content">
 
 <EditText
+    android:id="@+id/emal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:id="@+id/txtemail"
+
     android:singleLine="true"
     android:drawablePadding="10dp"
     android:hint="Enter User Email"
     android:textColorHint="#cccccc"
     android:textColor="#FFFFFF"
     android:textSize="20sp"
-    android:layout_below="@+id/textView3"
+    android:ems="5"
+    android:drawableLeft="@drawable/ic_mail_black_24dp"
+
     android:layout_centerHorizontal="true"
     android:layout_marginTop="47dp" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txtemail"
+        android:id="@+id/txtpass"
+
+        android:layout_height="wrap_content">
+
+
 
 <EditText
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:inputType="textPassword"
-    android:ems="10"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:ems="5"
     android:drawablePadding="10dp"
     android:singleLine="true"
-    android:hint="Enter User Passwrod"
+    android:hint="Enter User Password"
     android:textSize="20sp"
     android:textColorHint="#cccccc"
     android:textColor="#FFFFFF"
-    android:id="@+id/txtpass"
+    android:id="@+id/emal1"
+    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
     android:layout_below="@+id/txtemail"
     android:layout_alignLeft="@+id/txtemail"
     android:layout_alignStart="@+id/txtemail"
     android:layout_alignRight="@+id/txtemail"
     android:layout_alignEnd="@+id/txtemail" />
+    </android.support.design.widget.TextInputLayout>
 <Button
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"

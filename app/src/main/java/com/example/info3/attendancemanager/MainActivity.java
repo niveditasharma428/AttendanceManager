@@ -1,6 +1,7 @@
 package com.example.info3.attendancemanager;
 
 import android.content.DialogInterface;
+import android.support.design.widget.TextInputLayout;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,13 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //To hide AppBar for fullscreen.
-        ActionBar ab = getSupportActionBar();
-        ab.hide();
-
         //Referencing UserEmail, Password EditText and TextView for SignUp Now
-        final EditText _txtemail = (EditText) findViewById(R.id.txtemail);
-        final EditText _txtpass = (EditText) findViewById(R.id.txtpass);
+        final EditText _txtemail = (EditText) findViewById(R.id.emal);
+        final EditText _txtpass = (EditText) findViewById(R.id.emal1);
         Button _btnlogin = (Button) findViewById(R.id.btnsignin);
         TextView _btnreg = (TextView) findViewById(R.id.btnreg);
 
@@ -100,5 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }
-}
+
