@@ -1,5 +1,6 @@
 package com.example.info3.attendancemanager;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.support.design.widget.TextInputLayout;
 import android.content.Intent;
@@ -44,24 +45,23 @@ public class MainActivity extends AppCompatActivity {
                 String email = _txtemail.getText().toString();
                 String pass = _txtpass.getText().toString();
 
-                cursor = db.rawQuery("SELECT *FROM "+SQLiteDBHelper.TABLE_NAME+" WHERE "+SQLiteDBHelper.COLUMN_EMAIL+"=? AND "+SQLiteDBHelper.COLUMN_PASSWORD+"=?",new String[] {email,pass});
+                cursor = db.rawQuery("SELECT *FROM " + SQLiteDBHelper.TABLE_NAME + " WHERE " + SQLiteDBHelper.COLUMN_EMAIL + "=? AND " + SQLiteDBHelper.COLUMN_PASSWORD + "=?", new String[]{email, pass});
                 if (cursor != null) {
-                    if(cursor.getCount() > 0) {
+                    if (cursor.getCount() > 0) {
 
                         cursor.moveToFirst();
                         //Retrieving User FullName and Email after successfull login and passing to LoginSucessActivity
                         String _fname = cursor.getString(cursor.getColumnIndex(SQLiteDBHelper.COLUMN_FULLNAME));
-                        String _email= cursor.getString(cursor.getColumnIndex(SQLiteDBHelper.COLUMN_EMAIL));
+                        String _email = cursor.getString(cursor.getColumnIndex(SQLiteDBHelper.COLUMN_EMAIL));
                         Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this,LoginSuccess.class);
-                        intent.putExtra("fullname",_fname);
-                        intent.putExtra("email",_email);
+                        Intent intent = new Intent(MainActivity.this, LoginSuccess.class);
+                        intent.putExtra("fullname", _fname);
+                        intent.putExtra("email", _email);
                         startActivity(intent);
 
                         //Removing MainActivity[Login Screen] from the stack for preventing back button press.
                         finish();
-                    }
-                    else {
+                    } else {
 
                         //I am showing Alert Dialog Box here for alerting user about wrong credentials
                         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -85,22 +85,69 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Intent For Opening RegisterAccountActivity
+        // Intent For Opening rEGISTER DIALOG
         _btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                final EditText etname, etemail, etpass;
+                Button btn;
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                View mview = getLayoutInflater().inflate(R.layout.activity_register_account, null);
+                etname = (EditText) mview.findViewById(R.id.name);
+                etemail = (EditText) mview.findViewById(R.id.email);
+                etpass = (EditText) mview.findViewById(R.id.pswd);
+                btn = (Button) mview.findViewById(R.id.btn_reg);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,RegisterAccountActivity.class);
-                startActivity(intent);
+                        db = dbhelper.getWritableDatabase();
+
+                        String fullname = etname.getText().toString();
+                        String email = etemail.getText().toString();
+                        String pass = etpass.getText().toString();
+
+
+                        //Calling InsertData Method - Defined below
+                        InsertData(fullname, email, pass);
+
+                        //Alert dialog after clicking the Register Account
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("Information");
+                        builder.setMessage("Your Account is Successfully Created.");
+                        builder.setPositiveButton("Okey", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                //Finishing the dialog and removing Activity from stack.
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
+                });
+
+               builder.setView(mview);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
+
+
+    }
+    public void InsertData(String fullName, String email, String password) {
+
+        ContentValues values = new ContentValues();
+        values.put(SQLiteDBHelper.COLUMN_FULLNAME,fullName);
+        values.put(SQLiteDBHelper.COLUMN_EMAIL,email);
+        values.put(SQLiteDBHelper.COLUMN_PASSWORD,password);
+        long id = db.insert(SQLiteDBHelper.TABLE_NAME,null,values);
+
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
 }
 

@@ -2,38 +2,33 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-android:layout_height="match_parent"  tools:context="com.example.info3.attendancemanager.MainActivity"
+android:layout_height="match_parent"
+    tools:context="com.example.info3.attendancemanager.MainActivity"
 
 android:background="@drawable/images">
-
-<View
-    android:id="@+id/title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#000000"
-    android:alpha="0.6"
-    android:layout_alignParentTop="true" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="Login"
-
-    android:textSize="35sp"
-    android:fontFamily=""
-    android:id="@+id/textView"
-    android:textColor="#FFFFFF"
-    android:layout_marginTop="65dp"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true" />
+    <View
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:alpha="0.6"
+        android:layout_alignParentTop="true" />
 
 
+    <ImageView
+        android:layout_width="450dp"
+        android:layout_height="70dp"
+        android:src="@drawable/itinfocubelogo"
+        android:layout_marginTop="65dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/textView"
+        />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/textView"
         android:id="@+id/txtemail"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content">
 
 <EditText
@@ -50,7 +45,7 @@ android:background="@drawable/images">
     android:textColor="#FFFFFF"
     android:textSize="20sp"
     android:ems="5"
-    android:drawableLeft="@drawable/ic_mail_black_24dp"
+    android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
 
     android:layout_centerHorizontal="true"
     android:layout_marginTop="47dp" />
@@ -60,7 +55,7 @@ android:background="@drawable/images">
         android:layout_width="match_parent"
         android:layout_below="@+id/txtemail"
         android:id="@+id/txtpass"
-
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
 
@@ -92,14 +87,14 @@ android:background="@drawable/images">
 
     android:textColor="@android:color/white"
     android:text="SIGN IN"
-    android:textSize="20sp"
+    android:textSize="15sp"
+    android:background="@color/btn_color"
+
+    android:layout_marginTop="30dp"
     android:id="@+id/btnsignin"
     android:layout_below="@+id/txtpass"
-    android:layout_marginTop="6dp"
-    android:layout_alignLeft="@+id/txtpass"
-    android:layout_alignStart="@+id/txtpass"
-    android:layout_alignRight="@+id/txtpass"
-    android:layout_alignEnd="@+id/txtpass" />
+    android:layout_marginRight="25dp"
+    android:layout_marginLeft="25dp" />
 
 
 <TextView

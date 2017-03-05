@@ -25,6 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
 
-    compile 'com.pkmmte.view:circularimageview:1.1'
-
+    compile 'de.hdodenhof:circleimageview:1.2.1'
 }
