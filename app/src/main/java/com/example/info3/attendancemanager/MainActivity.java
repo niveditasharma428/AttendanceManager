@@ -11,13 +11,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
+    UserSessionManager userSessionManager;
 
     SQLiteOpenHelper dbhelper;
     SQLiteDatabase db;
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         dbhelper = new SQLiteDBHelper(this);
         db = dbhelper.getReadableDatabase();
 
+        userSessionManager = new UserSessionManager(this);
+
         _btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,10 +51,21 @@ public class MainActivity extends AppCompatActivity {
                 String email = _txtemail.getText().toString();
                 String pass = _txtpass.getText().toString();
 
-                cursor = db.rawQuery("SELECT *FROM " + SQLiteDBHelper.TABLE_NAME + " WHERE " + SQLiteDBHelper.COLUMN_EMAIL + "=? AND " + SQLiteDBHelper.COLUMN_PASSWORD + "=?", new String[]{email, pass});
+                if(email.isEmpty()|| !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    _txtemail.setError("invaild email");
+
+                if (pass.isEmpty()||!(pass.length()>8&&pass.length()<13))
+                  _txtpass.setError("password must be 8 and 13 characters long");
+
+                    return ;
+                }
+
+                cursor = db.rawQuery("SELECT *FROM " + SQLiteDBHelper.TABLE_NAME + " WHERE " + SQLiteDBHelper.COLUMN_EMAIL + "=? AND "
+                        + SQLiteDBHelper.COLUMN_PASSWORD + "=?",
+                        new String[]{email, pass});
+
                 if (cursor != null) {
                     if (cursor.getCount() > 0) {
-
                         cursor.moveToFirst();
                         //Retrieving User FullName and Email after successfull login and passing to LoginSucessActivity
                         String _fname = cursor.getString(cursor.getColumnIndex(SQLiteDBHelper.COLUMN_FULLNAME));
@@ -57,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, LoginSuccess.class);
                         intent.putExtra("fullname", _fname);
                         intent.putExtra("email", _email);
-                        startActivity(intent);
 
+                        userSessionManager.CreateLoginSession(_fname,_email);
+                        startActivity(intent);
                         //Removing MainActivity[Login Screen] from the stack for preventing back button press.
                         finish();
                     } else {
@@ -107,6 +125,21 @@ public class MainActivity extends AppCompatActivity {
                         String email = etemail.getText().toString();
                         String pass = etpass.getText().toString();
 
+                        if(fullname.isEmpty()||fullname.length()<3){
+                            etname.setError("Length should be greater than 3");
+
+
+                        if(email.isEmpty()|| !Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                            etemail.setError("invaild email");
+
+
+                        if (pass.isEmpty()||!(pass.length()>8&&pass.length()<13))
+                            etpass.setError("password must be 8 and 13 characters long");
+
+                            return ;
+                        }
+
+
 
                         //Calling InsertData Method - Defined below
                         InsertData(fullname, email, pass);
@@ -130,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-               builder.setView(mview);
+                builder.setView(mview);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
@@ -140,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void InsertData(String fullName, String email, String password) {
-
         ContentValues values = new ContentValues();
         values.put(SQLiteDBHelper.COLUMN_FULLNAME,fullName);
         values.put(SQLiteDBHelper.COLUMN_EMAIL,email);

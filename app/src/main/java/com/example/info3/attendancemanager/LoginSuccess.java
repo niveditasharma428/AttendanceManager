@@ -13,9 +13,9 @@ import android.view.View;
 
 public class LoginSuccess extends AppCompatActivity {
 
-    String Title[]={"Home","Holidays","Add Holiday","Contact Us","Email Us"};
+    String Title[]={"Home","Holidays","Add Holiday","Contact Us","Email Us","Log Out"};
     int Icons[]={R.drawable.ic_home_black_24dp,R.drawable.ic_holiday_black_24dp,R.drawable.ic_add_black_24dp,R.drawable.ic_contact_phone_black_24dp,
-    R.drawable.ic_contact_mail_black_24dp};
+    R.drawable.ic_contact_mail_black_24dp,R.drawable.logout};
 
     String Name = "Nivi sharma";
     String Email="abc@gmail.com";

@@ -22,7 +22,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_FULLNAME + " TEXT, "+
                     COLUMN_EMAIL + " TEXT, " +
-                    COLUMN_PASSWORD + " TEXT, " + ")";
+                    COLUMN_PASSWORD + " TEXT" + ")";
     public SQLiteDBHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
@@ -30,7 +30,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_QUERY);
-
     }
 
     @Override
