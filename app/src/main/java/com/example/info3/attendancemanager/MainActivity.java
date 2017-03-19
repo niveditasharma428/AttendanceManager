@@ -125,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         String email = etemail.getText().toString();
                         String pass = etpass.getText().toString();
 
+                        //validation
+
                         if(fullname.isEmpty()||fullname.length()<3){
                             etname.setError("Length should be greater than 3");
 
@@ -178,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         values.put(SQLiteDBHelper.COLUMN_EMAIL,email);
         values.put(SQLiteDBHelper.COLUMN_PASSWORD,password);
         long id = db.insert(SQLiteDBHelper.TABLE_NAME,null,values);
-
     }
 
 }

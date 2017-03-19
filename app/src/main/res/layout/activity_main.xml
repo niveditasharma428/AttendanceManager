@@ -5,14 +5,8 @@ xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_paren
 android:layout_height="match_parent"
     tools:context="com.example.info3.attendancemanager.MainActivity"
 
-android:background="@drawable/images">
-    <View
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:alpha="0.6"
-        android:layout_alignParentTop="true" />
+    android:background="@color/background">
+
 
 
     <ImageView
@@ -37,7 +31,7 @@ android:background="@drawable/images">
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-
+    android:inputType="textEmailAddress"
     android:singleLine="true"
     android:drawablePadding="10dp"
     android:hint="Enter User Email"
