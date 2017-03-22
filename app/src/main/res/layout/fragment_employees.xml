@@ -5,11 +5,12 @@
     tools:context="com.example.info3.attendancemanager.Employees_Frag"
     android:id="@+id/employees_frag">
 
-    <TextView
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Employees List"
-        android:textSize="50sp"
-        android:gravity="center_horizontal|center_vertical"/>
+        android:id="@+id/emp_listview"
+        android:dividerHeight="5dp"
 
+        />
 </LinearLayout>

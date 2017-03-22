@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         >
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/header_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -35,7 +35,7 @@
             />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/header_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"

@@ -26,13 +26,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class LoginSuccess extends AppCompatActivity {
     UserSessionManager userSessionManager;
-
+    Database database;
     private String[] NavigationDrawerItemTitles;
     private ListView DrawerList;
     Toolbar toolbar;
@@ -41,14 +42,14 @@ public class LoginSuccess extends AppCompatActivity {
     DrawerLayout drawer;
     ActionBarDrawerToggle nDrawerToggle;
 
-    String Name = "Nivi sharma";
-    String Email = "abc@gmail.com";
+    CharSequence Name;
+    CharSequence Email;
     int Profile = R.drawable.profile;
     Intent intent = null;
 
     //Employee Strings
-    String Job_profile,Emp_name,Emp_Mob,Emp_date;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    String Job_profile,Emp_name,Emp_date,Emp_Mob;
+    private int mYear, mMonth, mDay;
     EditText ename, emo, date;
     Spinner spinner;
     Button ADD_Emp;
@@ -59,10 +60,12 @@ public class LoginSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_success);
 
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Home_Frag()).commit();
 
         userSessionManager = new UserSessionManager(this);
+        database = new Database(this);
 
         Title = DrawerTitle = getTitle();
         NavigationDrawerItemTitles = getResources().getStringArray(R.array.navigation_drawer_items_array);
@@ -84,7 +87,16 @@ public class LoginSuccess extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        Bundle extras = getIntent().getExtras();
+        Name = (CharSequence) extras.get("fullname");
+        Email = (CharSequence) extras.get("email");
+
         ViewGroup header = (ViewGroup) getLayoutInflater().inflate(R.layout.header, null);
+        TextView header_name = (TextView) header.findViewById(R.id.header_name);
+        header_name.setText(Name);
+
+        TextView header_email = (TextView) header.findViewById(R.id.header_email);
+        header_email.setText(Email);
         DrawerList.addHeaderView(header);
 
         listViewAdapter listViewAdapter = new listViewAdapter(this, R.layout.item_row, dataModels);
@@ -239,15 +251,16 @@ public class LoginSuccess extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Database Insert
-
                 Emp_name = ename.getText().toString();
                 Emp_Mob = emo.getText().toString();
-
+                Log.d("vishnu",Job_profile+" Insert() before caleed");
+                database.empInsertData(Emp_name,Emp_Mob,Emp_date,Job_profile);
             }
         });
         builder.setView(mview);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }
 

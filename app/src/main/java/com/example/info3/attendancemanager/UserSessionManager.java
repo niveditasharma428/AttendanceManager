@@ -30,6 +30,8 @@ public class UserSessionManager {
     //all shared pref keys
     private static  final String IS_USER_LOGIN = "IsUserLoggedIn";
 
+    public static  final String NAME = "Name";
+
     public static  final String EMAIL = "Email";
 
     public static  final String PASSWORD = "Password";
@@ -42,13 +44,15 @@ public class UserSessionManager {
     }
 
     //create login session
-    public  void  CreateLoginSession(String Email,String password)
+    public  void  CreateLoginSession(String Name,String Email,String password)
     {
         //storing login value as true
         editor.putBoolean(IS_USER_LOGIN,true);
 
-        //storing email as true
+        //storing email and name
         editor.putString(EMAIL,Email);
+
+        editor.putString(NAME,Name);
 
         editor.putString(PASSWORD,password);
 
@@ -80,7 +84,7 @@ public class UserSessionManager {
         HashMap<String,String> user = new HashMap<String, String>();
 
         user.put(EMAIL,sharedPreferences.getString(EMAIL,null));
-
+        user.put(NAME,sharedPreferences.getString(NAME,null));
         user.put(PASSWORD,sharedPreferences.getString(PASSWORD,null));
 
         return  user;

@@ -8,6 +8,9 @@
     <color name="btn_color">#616161</color>
     <color name="status_bar">#33691e</color>
     <color name="tool_bar">#689f38</color>
+    <color name="listview">#fff</color>
+    <color name="Absent_attendec">#dc1e1e</color>
+    <color name="Present_Attendence">#221da3</color>
     <color name="navigation_drawer_background">#fff</color>
 
 </resources>

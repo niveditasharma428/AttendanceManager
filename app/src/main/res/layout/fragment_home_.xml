@@ -2,14 +2,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.info3.attendancemanager.Home_Frag"
-    android:id="@+id/home_frag">
+    android:id="@+id/home_frag"
+    >
 
-    <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:orientation="vertical"
+        android:background="@color/tool_bar"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date and day"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:id="@+id/date_day"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Absent : "
+                android:textSize="18sp"
+                android:id="@+id/absent"
+                android:textColor="@color/Absent_attendec"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:paddingTop="3dp"
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="100dp"
+                android:text="00"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/Absent_attendec"/>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="101dp"
+                android:layout_toEndOf="@+id/textView6"
+                android:text="Present : "
+                android:textSize="18sp"
+                android:textColor="@color/Present_Attendence"/>
+
+            <TextView
+                android:paddingTop="3dp"
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/absent"
+                android:layout_toEndOf="@+id/textView7"
+                android:layout_marginLeft="10dp"
+                android:text="00"
+                android:textSize="15sp"
+                android:textColor="@color/Present_Attendence"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"
-        android:textSize="50sp"
-        android:gravity="center_horizontal|center_vertical"/>
+        android:orientation="vertical">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/absent"
+            android:layout_marginTop="4dp"
+            android:id="@+id/home_frag_listview"
+            android:dividerHeight="5dp"
+            android:focusable="true"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

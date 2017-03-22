@@ -33,8 +33,10 @@ public class splash extends Activity
                        HashMap<String,String> userdetails = userSessionManager.getUserSession();
 
                        String email = userdetails.get(UserSessionManager.EMAIL);
+                       String Name = userdetails.get(UserSessionManager.NAME);
                        Intent i = new Intent(splash.this,LoginSuccess.class);
-                       i.putExtra("Email",email);
+                       i.putExtra("email",email);
+                       i.putExtra("fullname",Name);
                        startActivity(i);
                    }
                    else{
